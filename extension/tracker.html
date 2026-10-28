@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Quest · 90-Day Routine Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top sys">
+    <div>
+      <div class="kicker">[ System ]</div>
+      <h1>Daily Quest<span>Preparations to become strong · 90 days</span></h1>
+      <p>The System has assigned you a daily quest. Clear every objective, Monday to Friday. Saturday and Sunday are rest days.</p>
+    </div>
+    <label class="start" for="start">Quest begins on
+      <input id="start" type="date">
+    </label>
+  </header>
+
+  <section class="stats" aria-label="Status">
+    <div class="stat"><div class="k">Level</div><div class="v" id="sLevel">Lv. 0<small> / 90</small></div></div>
+    <div class="stat rank"><div class="k">Hunter rank</div><div class="v" id="sRank">E</div></div>
+    <div class="stat"><div class="k">Streak</div><div class="v" id="sStreak">0<small> days</small></div></div>
+    <div class="stat"><div class="k">EXP</div><div class="v" id="sTasks">0</div></div>
+    <div class="stat"><div class="k">Today</div><div class="v" id="sToday">&ndash;</div></div>
+  </section>
+  <div class="barrow"><div class="bar" role="progressbar" aria-label="EXP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><i id="barFill"></i></div><span id="barPct">0%</span></div>
+
+  <section class="routine sys" aria-label="Quest info">
+    <h2>[ Quest info ] Every weekday</h2>
+    <ol>
+      <li><b>Focus training: 90 minutes of office work with AI sealed.</b> No Cursor, Copilot, ChatGPT, Claude or Gemini. Docs, notes and the debugger only.</li>
+      <li><b>System design skill.</b> Read the one concept named on each quest.</li>
+      <li><b>AI skill.</b> Read the one concept named on each quest.</li>
+    </ol>
+    <div class="extra">Twice a week (the 2nd and 5th quest of each plan week, 36 in all) a <b>dungeon</b> opens: clear 2 DSA gates. Save one note per problem: the idea and the time and space cost. Each cleared day is one level; every 18 levels raises your hunter rank from E up to S.</div>
+    <div class="warn">Warning: leaving a weekday quest uncleared resets your streak. Rest days never do.</div>
+  </section>
+
+  <div class="tabs-scroll"><div class="tabs" id="tabs" role="tablist" aria-label="Weeks"></div></div>
+  <div class="wkhead">
+    <div><h2 id="wkTitle">Week 1</h2><div class="ph" id="wkPhase"></div></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="save" id="saveState">Loading your progress&hellip;</span><button class="btn" id="goToday" type="button">Jump to today</button></div>
+  </div>
+  <div class="days" id="days"></div>
+
+  <p class="foot">Day 1 is the first weekday on or after the date above, and the 90 quests run Monday to Friday for 18 weeks. Change the date any time and your ticks stay with the day numbers. Progress syncs with your Chrome profile.</p>
+</div>
+<script src="data.js"></script>
+<script src="ui.js"></script>
+<script src="tracker.js"></script>
+</body>
+</html>

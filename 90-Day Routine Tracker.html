@@ -1,0 +1,1688 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font:
+          14px -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: #fff;
+        color: #000;
+      }
+      img {
+        max-width: 100%;
+      }
+      [hidden]:not([hidden="until-found" i]) {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <title>Daily Quest · 90-Day Routine Tracker</title>
+    <meta name="claude:viewport-fit-sides" content="cover" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
+    />
+    <style>
+      /* Solo Leveling "System window" theme: deep navy void, glowing blue panels, violet for dungeons. */
+      :root {
+        --bg: #04060d;
+        --surface: rgba(8, 17, 36, 0.9);
+        --surface-2: rgba(13, 28, 60, 0.92);
+        --ink: #e6f0ff;
+        --muted: #7f98bf;
+        --line: rgba(84, 160, 255, 0.26);
+        --line-strong: rgba(110, 185, 255, 0.75);
+        --accent: #4db2ff;
+        --accent-2: #9ad8ff;
+        --accent-ink: #001226;
+        --accent-soft: rgba(77, 178, 255, 0.1);
+        --glow: 0 0 14px rgba(77, 178, 255, 0.45);
+        --dsa: #b48cff;
+        --dsa-soft: rgba(140, 90, 255, 0.16);
+        --warn: #ff6b7d;
+        --font-display: "Rajdhani", "Helvetica Neue", Arial, sans-serif;
+        --font-body: "Exo 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+        --font-mono:
+          "Share Tech Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 15px;
+        line-height: 1.5;
+        background:
+          radial-gradient(
+            1100px 520px at 50% -12%,
+            rgba(40, 110, 255, 0.24),
+            transparent 62%
+          ),
+          radial-gradient(
+            760px 480px at 105% 105%,
+            rgba(120, 60, 255, 0.16),
+            transparent 60%
+          ),
+          var(--bg);
+        background-attachment: fixed;
+        padding: 20px 16px 56px;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        text-wrap: balance;
+        margin: 0;
+      }
+      .mono {
+        font-family: var(--font-mono);
+        font-variant-numeric: tabular-nums;
+      }
+      a {
+        color: var(--accent-2);
+      }
+
+      /* System window: glowing frame with corner brackets */
+      .sys {
+        position: relative;
+        background: linear-gradient(180deg, var(--surface-2), var(--surface));
+        border: 1px solid var(--line-strong);
+        border-radius: 3px;
+        box-shadow:
+          0 0 22px rgba(77, 178, 255, 0.16),
+          inset 0 0 30px rgba(77, 178, 255, 0.07);
+      }
+      .sys::before,
+      .sys::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--accent-2);
+        pointer-events: none;
+      }
+      .sys::before {
+        top: -3px;
+        left: -3px;
+        border-right: 0;
+        border-bottom: 0;
+      }
+      .sys::after {
+        bottom: -3px;
+        right: -3px;
+        border-left: 0;
+        border-top: 0;
+      }
+      .kicker {
+        font: 600 12px var(--font-mono);
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--accent);
+        text-shadow: var(--glow);
+      }
+
+      /* header */
+      .top {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 32px;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 18px 20px;
+        margin-bottom: 18px;
+      }
+      .top h1 {
+        font-size: clamp(30px, 5.5vw, 44px);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        line-height: 1.05;
+        text-transform: uppercase;
+        text-shadow: 0 0 18px rgba(77, 178, 255, 0.55);
+      }
+      .top h1 span {
+        display: block;
+        font-size: 0.48em;
+        letter-spacing: 0.14em;
+        color: var(--accent-2);
+        font-weight: 600;
+        margin-top: 4px;
+      }
+      .top p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        max-width: 56ch;
+      }
+      .start {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font: 500 12px var(--font-mono);
+        color: var(--muted);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .start input {
+        font: 500 15px var(--font-mono);
+        color: var(--ink);
+        background: rgba(4, 10, 24, 0.9);
+        border: 1px solid var(--line-strong);
+        border-radius: 3px;
+        padding: 7px 10px;
+        letter-spacing: 0.04em;
+        box-shadow: var(--glow);
+        color-scheme: dark;
+      }
+
+      /* status window */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .stat {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 12px 14px;
+        min-width: 0;
+      }
+      .stat .k {
+        font: 500 11px var(--font-mono);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .stat .v {
+        font: 700 28px var(--font-display);
+        margin-top: 2px;
+        letter-spacing: 0.04em;
+        font-variant-numeric: tabular-nums;
+        color: var(--ink);
+      }
+      .stat .v small {
+        font: 400 14px var(--font-mono);
+        color: var(--muted);
+        letter-spacing: 0;
+      }
+      .stat.rank .v {
+        color: var(--accent-2);
+        text-shadow: var(--glow);
+      }
+      .bar {
+        height: 10px;
+        background: rgba(77, 178, 255, 0.12);
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .bar > i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(
+          90deg,
+          #2f6bff,
+          var(--accent),
+          var(--accent-2)
+        );
+        box-shadow: 0 0 12px rgba(77, 178, 255, 0.8);
+        transition: width 0.3s ease;
+      }
+      .barrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .barrow .bar {
+        flex: 1;
+      }
+      .barrow span {
+        font: 500 13px var(--font-mono);
+        color: var(--accent-2);
+        white-space: nowrap;
+      }
+      .save {
+        font: 400 12px var(--font-mono);
+        color: var(--muted);
+      }
+
+      /* quest info */
+      .routine {
+        padding: 14px 18px;
+        margin-bottom: 20px;
+      }
+      .routine h2 {
+        font: 600 13px var(--font-mono);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 10px;
+        text-shadow: var(--glow);
+      }
+      .routine ol {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 4px;
+      }
+      .routine li::marker {
+        color: var(--accent);
+        font-family: var(--font-mono);
+      }
+      .routine li b {
+        font-weight: 600;
+        color: var(--accent-2);
+      }
+      .routine .extra {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .routine .extra b {
+        color: var(--dsa);
+      }
+      .warn {
+        margin-top: 10px;
+        font: 500 12px var(--font-mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--warn);
+        text-shadow: 0 0 10px rgba(255, 107, 125, 0.45);
+      }
+
+      /* week tabs */
+      .tabs-scroll {
+        overflow-x: auto;
+        margin-bottom: 16px;
+        padding: 2px 2px 6px;
+      }
+      .tabs {
+        display: flex;
+        gap: 6px;
+        width: max-content;
+      }
+      .tab {
+        font: 500 13px var(--font-mono);
+        background: var(--surface);
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 8px 12px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        min-width: 78px;
+        letter-spacing: 0.04em;
+      }
+      .tab small {
+        font-size: 11px;
+        opacity: 0.85;
+      }
+      .tab:hover {
+        border-color: var(--line-strong);
+        color: var(--ink);
+      }
+      .tab[aria-selected="true"] {
+        background: var(--accent);
+        color: var(--accent-ink);
+        border-color: var(--accent-2);
+        box-shadow: var(--glow);
+      }
+      .tab.full:not([aria-selected="true"]) {
+        border-color: var(--dsa);
+        color: var(--dsa);
+      }
+      .tab:focus-visible,
+      .btn:focus-visible,
+      .start input:focus-visible {
+        outline: 2px solid var(--accent-2);
+        outline-offset: 2px;
+      }
+      .wkhead {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .wkhead h2 {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .wkhead .ph {
+        font: 400 12px var(--font-mono);
+        color: var(--muted);
+      }
+      .btn {
+        font: 600 14px var(--font-display);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: rgba(4, 10, 24, 0.9);
+        color: var(--accent-2);
+        border: 1px solid var(--line-strong);
+        border-radius: 3px;
+        padding: 7px 14px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        box-shadow: var(--glow);
+        color: var(--ink);
+      }
+      .btn.primary {
+        background: var(--accent);
+        color: var(--accent-ink);
+        border-color: var(--accent-2);
+        box-shadow: var(--glow);
+      }
+      .btn.primary:hover {
+        background: var(--accent-2);
+      }
+
+      /* quest cards */
+      .days {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+        gap: 16px;
+      }
+      .day {
+        padding: 14px 14px 10px;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .day.today {
+        border-color: var(--accent-2);
+        box-shadow:
+          0 0 30px rgba(77, 178, 255, 0.35),
+          inset 0 0 30px rgba(77, 178, 255, 0.12);
+      }
+      .day.complete {
+        border-color: var(--dsa);
+        box-shadow:
+          0 0 24px rgba(140, 90, 255, 0.3),
+          inset 0 0 30px rgba(140, 90, 255, 0.1);
+      }
+      .day.complete::before,
+      .day.complete::after {
+        border-color: var(--dsa);
+      }
+      .dhead {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .dhead .kick {
+        font: 500 10px var(--font-mono);
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .dhead h3 {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1.1;
+      }
+      .dhead .dt {
+        font: 400 12px var(--font-mono);
+        color: var(--muted);
+      }
+      .pills {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .pill {
+        font: 500 11px var(--font-mono);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border-radius: 2px;
+        padding: 2px 8px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .pill.now {
+        background: var(--accent);
+        color: var(--accent-ink);
+        border-color: var(--accent-2);
+        box-shadow: var(--glow);
+      }
+      .pill.ok {
+        background: var(--dsa);
+        color: #12052b;
+        border-color: var(--dsa);
+        box-shadow: 0 0 12px rgba(140, 90, 255, 0.6);
+      }
+      .pill.dsa {
+        background: var(--dsa-soft);
+        color: var(--dsa);
+        border-color: rgba(180, 140, 255, 0.45);
+      }
+      .task {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 10px;
+        padding: 8px 0;
+        border-top: 1px solid var(--line);
+        cursor: pointer;
+        align-items: start;
+      }
+      .task:first-of-type {
+        border-top: 0;
+      }
+      .task input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        margin: 2px 0 0;
+        border: 1.5px solid var(--accent);
+        border-radius: 2px;
+        background: rgba(4, 10, 24, 0.9);
+        cursor: pointer;
+        display: grid;
+        place-content: center;
+        box-shadow: inset 0 0 6px rgba(77, 178, 255, 0.35);
+      }
+      .task input::after {
+        content: "";
+        width: 10px;
+        height: 6px;
+        border-left: 2.5px solid var(--accent-ink);
+        border-bottom: 2.5px solid var(--accent-ink);
+        transform: rotate(-45deg) translate(1px, -1px);
+        opacity: 0;
+      }
+      .task input:checked {
+        background: var(--accent);
+        border-color: var(--accent-2);
+        box-shadow: var(--glow);
+      }
+      .task input:checked::after {
+        opacity: 1;
+      }
+      .task input:focus-visible {
+        outline: 2px solid var(--accent-2);
+        outline-offset: 2px;
+      }
+      .task .lab {
+        font: 500 11px var(--font-mono);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 1px;
+      }
+      .task .tx {
+        display: block;
+        min-width: 0;
+        overflow-wrap: anywhere;
+        font-weight: 500;
+      }
+      .task .tx a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: var(--line-strong);
+        text-underline-offset: 3px;
+      }
+      .task .tx a:hover {
+        color: var(--accent-2);
+        text-decoration-color: var(--accent-2);
+      }
+      .task input:checked ~ div .tx {
+        color: var(--muted);
+        text-decoration: line-through;
+        text-decoration-color: rgba(127, 152, 191, 0.6);
+      }
+      .task.dsa .lab {
+        color: var(--dsa);
+      }
+      .task.dsa input {
+        border-color: var(--dsa);
+        box-shadow: inset 0 0 6px rgba(140, 90, 255, 0.35);
+      }
+      .task.dsa input:checked {
+        background: var(--dsa);
+        border-color: var(--dsa);
+        box-shadow: 0 0 12px rgba(140, 90, 255, 0.6);
+      }
+      .diff {
+        font: 500 10px var(--font-mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-left: 6px;
+        padding: 1px 5px;
+        border-radius: 2px;
+        border: 1px solid currentColor;
+      }
+      .diff.r-D {
+        color: #6fe3a5;
+      }
+      .diff.r-B {
+        color: #b48cff;
+      }
+      .diff.r-S {
+        color: #ff6b7d;
+        text-shadow: 0 0 8px rgba(255, 107, 125, 0.5);
+      }
+      .probs {
+        display: grid;
+        gap: 3px;
+      }
+      .foot {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* [System] notification */
+      .toast {
+        position: fixed;
+        left: 50%;
+        top: 18px;
+        z-index: 10;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        white-space: nowrap;
+        font: 700 15px var(--font-display);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink);
+        background: rgba(6, 14, 32, 0.96);
+        border: 1px solid var(--accent-2);
+        border-radius: 3px;
+        box-shadow:
+          var(--glow),
+          0 0 48px rgba(77, 178, 255, 0.3);
+        animation:
+          sys-in 0.25s ease-out,
+          sys-out 0.4s ease-in 2.3s forwards;
+      }
+      @keyframes sys-in {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -8px) scale(0.96);
+        }
+      }
+      @keyframes sys-out {
+        to {
+          opacity: 0;
+          transform: translate(-50%, -6px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bar > i {
+          transition: none;
+        }
+        .toast {
+          animation: none;
+        }
+      }
+    </style>
+
+    <div class="wrap">
+      <header class="top sys">
+        <div>
+          <div class="kicker">[ System ]</div>
+          <h1>
+            Daily Quest<span>Preparations to become strong · 90 days</span>
+          </h1>
+          <p>
+            The System has assigned you a daily quest. Clear every objective,
+            Monday to Friday. Saturday and Sunday are rest days.
+          </p>
+        </div>
+        <label class="start" for="start"
+          >Quest begins on
+          <input id="start" type="date" />
+        </label>
+      </header>
+
+      <section class="stats" aria-label="Status">
+        <div class="stat">
+          <div class="k">Level</div>
+          <div class="v" id="sLevel">Lv. 0<small> / 90</small></div>
+        </div>
+        <div class="stat rank">
+          <div class="k">Hunter rank</div>
+          <div class="v" id="sRank">E</div>
+        </div>
+        <div class="stat">
+          <div class="k">Streak</div>
+          <div class="v" id="sStreak">0<small> days</small></div>
+        </div>
+        <div class="stat">
+          <div class="k">EXP</div>
+          <div class="v" id="sTasks">0</div>
+        </div>
+        <div class="stat">
+          <div class="k">Today</div>
+          <div class="v" id="sToday">&ndash;</div>
+        </div>
+      </section>
+      <div class="barrow">
+        <div
+          class="bar"
+          role="progressbar"
+          aria-label="EXP"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="bar"
+        >
+          <i id="barFill"></i>
+        </div>
+        <span id="barPct">0%</span>
+      </div>
+
+      <section class="routine sys" aria-label="Quest info">
+        <h2>[ Quest info ] Every weekday</h2>
+        <ol>
+          <li>
+            <b>Focus training: 90 minutes of office work with AI sealed.</b> No
+            Cursor, Copilot, ChatGPT, Claude or Gemini. Docs, notes and the
+            debugger only.
+          </li>
+          <li>
+            <b>System design skill.</b> Read the one concept named on each
+            quest.
+          </li>
+          <li><b>AI skill.</b> Read the one concept named on each quest.</li>
+        </ol>
+        <div class="extra">
+          Twice a week (the 2nd and 5th quest of each plan week, 36 in all) a
+          <b>dungeon</b> opens: clear 2 DSA gates. Save one note per problem:
+          the idea and the time and space cost. Each cleared day is one level;
+          every 18 levels raises your hunter rank from E up to S.
+        </div>
+        <div class="warn">
+          Warning: leaving a weekday quest uncleared resets your streak. Rest
+          days never do.
+        </div>
+      </section>
+
+      <div class="tabs-scroll">
+        <div class="tabs" id="tabs" role="tablist" aria-label="Weeks"></div>
+      </div>
+      <div class="wkhead">
+        <div>
+          <h2 id="wkTitle">Week 1</h2>
+          <div class="ph" id="wkPhase"></div>
+        </div>
+        <div
+          style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"
+        >
+          <span class="save" id="saveState">Loading your progress&hellip;</span
+          ><button class="btn" id="goToday" type="button">Jump to today</button>
+        </div>
+      </div>
+      <div class="days" id="days"></div>
+
+      <p class="foot">
+        Day 1 is the first weekday on or after the date above, and the 90 quests
+        run Monday to Friday for 18 weeks. Change the date any time and your
+        ticks stay with the day numbers.
+      </p>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------- content ---------- */
+        var SD = [
+          "Client-server model and the request lifecycle",
+          "Latency, throughput and percentiles (p50, p99)",
+          "Back-of-envelope estimation",
+          "Availability, reliability, SLAs and SLOs",
+          "Horizontal vs vertical scaling",
+          "Load balancing: algorithms, L4 vs L7",
+          "Stateless vs stateful services and sessions",
+          "REST API design and versioning",
+          "Pagination: cursor vs offset",
+          "Idempotency and idempotency keys",
+          "Rate limiting: token bucket and sliding window",
+          "HTTP caching: Cache-Control and ETag",
+          "CDN and CloudFront cache behaviours",
+          "DNS and how a request finds your server",
+          "TLS, HTTPS and certificate pinning",
+          "SQL vs NoSQL: how to choose",
+          "Indexing: B-trees and compound index order",
+          "MongoDB schema design: embed vs reference",
+          "Reading query plans with explain",
+          "Replication: leader and followers",
+          "Replication lag and read-your-writes",
+          "Sharding strategies",
+          "Consistent hashing",
+          "CAP theorem",
+          "PACELC and consistency models",
+          "ACID transactions and isolation levels",
+          "Caching patterns: cache-aside, write-through, write-back",
+          "Cache invalidation and cache stampede",
+          "Redis data structures and what each is for",
+          "Redis persistence and eviction policies",
+          "Bloom filters",
+          "Object storage and S3 presigned URLs",
+          "Denormalisation and materialised views",
+          "Time-series data and append-only logs",
+          "Search basics: the inverted index",
+          "Message queues vs publish/subscribe",
+          "Kafka: partitions and consumer groups",
+          "Delivery semantics: at-most, at-least, exactly once",
+          "Retries with backoff and dead-letter queues",
+          "The outbox pattern",
+          "The saga pattern",
+          "Event sourcing and CQRS",
+          "Background jobs and worker design",
+          "WebSockets vs SSE vs long polling",
+          "Scaling WebSocket servers with Redis pub/sub",
+          "Push notifications: how FCM and APNs work",
+          "Presence and typing indicators",
+          "Webhook design, signing and retries",
+          "Backpressure and load shedding",
+          "Circuit breakers and bulkheads",
+          "Monolith vs microservices",
+          "API gateway and the backend-for-frontend pattern",
+          "Service discovery",
+          "GraphQL vs REST trade-offs",
+          "gRPC and protocol buffers",
+          "Authentication: sessions vs JWT",
+          "OAuth 2.0 and OpenID Connect flow",
+          "Refresh tokens and rotation",
+          "Authorisation: RBAC vs ABAC",
+          "Secrets management",
+          "Multi-region deployment and failover",
+          "Disaster recovery: RPO and RTO",
+          "Blue-green and canary deployments",
+          "Feature flags and kill switches",
+          "Observability: logs, metrics and traces",
+          "Mobile architecture layers: MVVM and clean architecture",
+          "Offline-first apps and local databases",
+          "Sync and conflict resolution: last-write-wins vs CRDTs",
+          "Mobile networking: timeouts, retries, flaky connections",
+          "Image loading, caching and resizing",
+          "List virtualisation and pagination in apps",
+          "App startup time and lazy loading",
+          "State management at scale: Redux normalisation",
+          "OTA updates and safe rollout",
+          "Mobile CI/CD and release trains",
+          "Crash reporting and app health metrics",
+          "Secure storage on device: Keychain and Keystore",
+          "Deep links and universal links",
+          "Background execution limits on iOS and Android",
+          "VoIP: CallKit, PushKit, signalling and TURN",
+          "Case study: design a URL shortener",
+          "Case study: design a chat app",
+          "Case study: design a news feed",
+          "Case study: design a notification system",
+          "Case study: design a matchmaking service",
+          "Case study: design a video call service",
+          "Case study: design a file upload service",
+          "Case study: design a rate limiter service",
+          "Case study: design a payments flow with idempotency",
+          "Capstone: write the design of your own app's backend",
+        ];
+        var AI = [
+          "What an LLM is: next-token prediction",
+          "Tokens and tokenisation",
+          "The context window and its limits",
+          "Temperature, top-p and sampling",
+          "Embeddings basics",
+          "Prompt anatomy: system, user, assistant",
+          "Zero-shot vs few-shot prompting",
+          "Chain-of-thought and reasoning prompts",
+          "Structured output and JSON schemas",
+          "Hallucinations and why they happen",
+          "Prompt caching",
+          "Streaming responses over SSE",
+          "Estimating cost and latency per request",
+          "Choosing between small and large models",
+          "Rate limits and retries for LLM APIs",
+          "Attention, intuitively",
+          "Transformer architecture overview",
+          "Pretraining vs fine-tuning vs RLHF",
+          "Fine-tuning vs RAG vs prompting: when to use which",
+          "LoRA and parameter-efficient tuning",
+          "Quantisation basics",
+          "Distillation",
+          "Scaling laws",
+          "The KV cache",
+          "Mixture of experts",
+          "Multimodal models",
+          "Open-weight vs hosted models",
+          "Context engineering",
+          "Long context vs retrieval",
+          "Benchmarks and their limits",
+          "RAG pipeline overview",
+          "Chunking strategies",
+          "Vector databases and ANN search (HNSW)",
+          "Similarity metrics: cosine vs dot product",
+          "Hybrid search: BM25 plus vectors",
+          "Reranking",
+          "Query rewriting",
+          "Metadata filtering",
+          "Citations and grounding",
+          "RAG failure modes",
+          "Evaluating retrieval: recall@k and MRR",
+          "Evaluating generation: faithfulness and relevance",
+          "Choosing an embedding model",
+          "Keeping a vector index fresh",
+          "RAG architecture for a mobile app and Node backend",
+          "Tool and function calling",
+          "The ReAct loop",
+          "Agent architecture: planner, executor, memory",
+          "Short-term vs long-term memory",
+          "Model Context Protocol (MCP)",
+          "Multi-agent patterns",
+          "Workflow vs agent: when to use which",
+          "Guardrails for tool use",
+          "Human-in-the-loop design",
+          "Agent failure modes: loops and drift",
+          "Sandboxing code execution",
+          "Cost control for agents",
+          "Planning and task decomposition",
+          "Computer-use and browser agents",
+          "Evaluating agents: task success rate",
+          "Why evals: measuring instead of guessing",
+          "Building a golden test set",
+          "LLM-as-judge and its biases",
+          "Regression testing for prompts",
+          "Prompt injection",
+          "Data leakage and PII handling",
+          "Jailbreaks and content filters",
+          "Red teaming",
+          "Output validation and schema checks",
+          "Observability for LLM apps: tracing",
+          "A/B testing AI features",
+          "Human feedback loops",
+          "Bias and responsible AI",
+          "Privacy: on-device vs cloud inference",
+          "Compliance basics: India's DPDP Act and GDPR",
+          "On-device ML: Core ML and TensorFlow Lite",
+          "On-device LLMs and small models",
+          "Streaming UI patterns",
+          "Latency UX: skeletons and partial results",
+          "Voice: speech-to-text and text-to-speech",
+          "Vision features: OCR and image understanding",
+          "Smart replies and summaries",
+          "Personalisation and recommender basics",
+          "Embedding-based search inside an app",
+          "Semantic caching",
+          "Cost optimisation: routing, batching, caching",
+          "AI-assisted coding: strengths, limits and review discipline",
+          "Spec-driven development and reviewing AI-written code",
+          "Career map: AI engineer vs ML engineer",
+          "Capstone: write a one-page AI product proposal",
+        ];
+        var DSA = [
+          [
+            ["Two Sum", "E"],
+            ["Group Anagrams", "M"],
+          ],
+          [
+            ["Top K Frequent Elements", "M"],
+            ["Product of Array Except Self", "M"],
+          ],
+          [
+            ["Contains Duplicate", "E"],
+            ["Longest Consecutive Sequence", "M"],
+          ],
+          [
+            ["Valid Palindrome", "E"],
+            ["3Sum", "M"],
+          ],
+          [
+            ["Two Sum II - Input Array Is Sorted", "M"],
+            ["Valid Anagram", "E"],
+          ],
+          [
+            ["Container With Most Water", "M"],
+            ["Longest Substring Without Repeating Characters", "M"],
+          ],
+          [
+            ["Best Time to Buy and Sell Stock", "E"],
+            ["Permutation in String", "M"],
+          ],
+          [
+            ["Valid Parentheses", "E"],
+            ["Daily Temperatures", "M"],
+          ],
+          [
+            ["Min Stack", "M"],
+            ["Evaluate Reverse Polish Notation", "M"],
+          ],
+          [
+            ["Generate Parentheses", "M"],
+            ["Car Fleet", "M"],
+          ],
+          [
+            ["Binary Search", "E"],
+            ["Search in Rotated Sorted Array", "M"],
+          ],
+          [
+            ["Koko Eating Bananas", "M"],
+            ["Find Minimum in Rotated Sorted Array", "M"],
+          ],
+          [
+            ["Search a 2D Matrix", "M"],
+            ["Time Based Key-Value Store", "M"],
+          ],
+          [
+            ["Reverse Linked List", "E"],
+            ["Merge Two Sorted Lists", "E"],
+          ],
+          [
+            ["Linked List Cycle", "E"],
+            ["Remove Nth Node From End of List", "M"],
+          ],
+          [
+            ["LRU Cache", "M"],
+            ["Add Two Numbers", "M"],
+          ],
+          [
+            ["Reorder List", "M"],
+            ["Copy List with Random Pointer", "M"],
+          ],
+          [
+            ["Invert Binary Tree", "E"],
+            ["Maximum Depth of Binary Tree", "E"],
+          ],
+          [
+            ["Same Tree", "E"],
+            ["Diameter of Binary Tree", "E"],
+          ],
+          [
+            ["Validate Binary Search Tree", "M"],
+            ["Binary Tree Level Order Traversal", "M"],
+          ],
+          [
+            ["Lowest Common Ancestor of a Binary Search Tree", "M"],
+            ["Kth Smallest Element in a BST", "M"],
+          ],
+          [
+            ["Binary Tree Right Side View", "M"],
+            ["Construct Binary Tree from Preorder and Inorder Traversal", "M"],
+          ],
+          [
+            ["Number of Islands", "M"],
+            ["Clone Graph", "M"],
+          ],
+          [
+            ["Course Schedule", "M"],
+            ["Rotting Oranges", "M"],
+          ],
+          [
+            ["Max Area of Island", "M"],
+            ["Pacific Atlantic Water Flow", "M"],
+          ],
+          [
+            ["Climbing Stairs", "E"],
+            ["House Robber", "M"],
+          ],
+          [
+            ["Coin Change", "M"],
+            ["Longest Increasing Subsequence", "M"],
+          ],
+          [
+            ["Unique Paths", "M"],
+            ["Longest Common Subsequence", "M"],
+          ],
+          [
+            ["Merge Intervals", "M"],
+            ["Insert Interval", "M"],
+          ],
+          [
+            ["Meeting Rooms II", "M"],
+            ["Non-overlapping Intervals", "M"],
+          ],
+          [
+            ["Kth Largest Element in an Array", "M"],
+            ["Task Scheduler", "M"],
+          ],
+          [
+            ["Merge k Sorted Lists", "H"],
+            ["Find Median from Data Stream", "H"],
+          ],
+          [
+            ["Subsets", "M"],
+            ["Permutations", "M"],
+          ],
+          [
+            ["Combination Sum", "M"],
+            ["Word Search", "M"],
+          ],
+          [
+            ["Word Break", "M"],
+            ["Longest Palindromic Substring", "M"],
+          ],
+          [
+            ["Implement Trie (Prefix Tree)", "M"],
+            ["Design Add and Search Words Data Structure", "M"],
+          ],
+        ];
+        var SD_PH = [
+          [1, 15, "Foundations"],
+          [16, 35, "Data and storage"],
+          [36, 50, "Messaging and async"],
+          [51, 65, "Architecture and security"],
+          [66, 80, "Mobile systems"],
+          [81, 90, "Case studies"],
+        ];
+        var AI_PH = [
+          [1, 15, "LLM basics"],
+          [16, 30, "Models and training"],
+          [31, 45, "Retrieval (RAG)"],
+          [46, 60, "Agents and tools"],
+          [61, 75, "Evals and safety"],
+          [76, 90, "AI in products"],
+        ];
+        /* Saturdays and Sundays are off: the 90 plan days run Monday to Friday, 5 per week. */
+        var DAYS = 90,
+          PER_WEEK = 5,
+          WEEKS = 18;
+        var BIT = { office: 1, sd: 2, ai: 4, dsa: 8 };
+        var DEFAULT_START = "2026-10-29";
+        var OLD_DEFAULT_START = "2026-11-02";
+
+        function phase(list, n) {
+          for (var i = 0; i < list.length; i++)
+            if (n >= list[i][0] && n <= list[i][1]) return list[i][2];
+          return "";
+        }
+        function dsaIndex(d) {
+          var r = (d - 1) % PER_WEEK;
+          if (r !== 1 && r !== 4) return -1;
+          return 2 * Math.floor((d - 1) / PER_WEEK) + (r === 4 ? 1 : 0);
+        }
+        function mask(d) {
+          return dsaIndex(d) >= 0 ? 15 : 7;
+        }
+        function bits(n) {
+          var c = 0;
+          while (n) {
+            c += n & 1;
+            n >>= 1;
+          }
+          return c;
+        }
+        var TOTAL_TASKS = 0;
+        for (var q = 1; q <= DAYS; q++) TOTAL_TASKS += bits(mask(q));
+
+        /* ---------- state ---------- */
+        var state = { start: DEFAULT_START, done: {} };
+        var rev = 0,
+          savedRev = 0,
+          saving = false,
+          timer = null,
+          dbDoc = null,
+          mode = "local";
+        var selWeek = null;
+
+        function validDate(s) {
+          return (
+            typeof s === "string" &&
+            /^\d{4}-\d{2}-\d{2}$/.test(s) &&
+            !isNaN(new Date(s + "T00:00:00").getTime())
+          );
+        }
+        function normalize(d) {
+          var out = { start: DEFAULT_START, done: {} };
+          if (d && validDate(d.start)) out.start = d.start;
+          if (d && d.done && typeof d.done === "object") {
+            for (var k in d.done) {
+              var n = parseInt(k, 10),
+                v = parseInt(d.done[k], 10);
+              if (n >= 1 && n <= DAYS && v > 0) out.done[n] = v & mask(n);
+            }
+          }
+          return out;
+        }
+        function hasProgress(s) {
+          for (var k in s.done) if (s.done[k]) return true;
+          return false;
+        }
+        /* One-time move, per storage source, of progress saved under the old default start date. */
+        function migrateStart(s, source) {
+          var flag = "routine90migrated." + source;
+          try {
+            if (localStorage.getItem(flag)) return false;
+            localStorage.setItem(flag, "1");
+          } catch (e) {
+            return false;
+          }
+          if (s.start !== OLD_DEFAULT_START) return false;
+          s.start = DEFAULT_START;
+          return true;
+        }
+        function loadLocal() {
+          try {
+            var r = localStorage.getItem("routine90");
+            if (r) {
+              state = normalize(JSON.parse(r));
+              if (migrateStart(state, "local")) saveLocal();
+            }
+          } catch (e) {}
+          try {
+            var w = localStorage.getItem("routine90week");
+            if (w) selWeek = parseInt(w, 10);
+          } catch (e) {}
+        }
+        function saveLocal() {
+          try {
+            localStorage.setItem("routine90", JSON.stringify(state));
+          } catch (e) {}
+        }
+
+        function setStatus() {
+          var el = document.getElementById("saveState");
+          if (saving || savedRev !== rev) el.textContent = "Saving…";
+          else
+            el.textContent =
+              mode === "cloud"
+                ? "Saved to your account"
+                : "Saved on this device";
+        }
+        function scheduleSave() {
+          rev++;
+          saveLocal();
+          setStatus();
+          clearTimeout(timer);
+          timer = setTimeout(flush, 500);
+        }
+        async function flush() {
+          if (!dbDoc) {
+            savedRev = rev;
+            setStatus();
+            return;
+          }
+          if (saving) {
+            timer = setTimeout(flush, 300);
+            return;
+          }
+          saving = true;
+          var mine = rev;
+          setStatus();
+          try {
+            await dbDoc.set({
+              start: state.start,
+              done: state.done,
+              updated: Date.now(),
+            });
+            mode = "cloud";
+          } catch (e) {
+            mode = "local";
+          }
+          saving = false;
+          savedRev = mine;
+          if (savedRev !== rev) {
+            timer = setTimeout(flush, 100);
+          }
+          setStatus();
+        }
+
+        /* ---------- dates ---------- */
+        function isOff(dt) {
+          var w = dt.getDay();
+          return w === 0 || w === 6;
+        }
+        function addDays(dt, n) {
+          return new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + n);
+        }
+        function today() {
+          return addDays(new Date(), 0);
+        }
+        function isOffToday() {
+          return isOff(today());
+        }
+        /* Day 1 is the first weekday on or after the start date. */
+        function firstDay() {
+          var p = state.start.split("-"),
+            t = new Date(+p[0], +p[1] - 1, +p[2]);
+          while (isOff(t)) t = addDays(t, 1);
+          return t;
+        }
+        function dateOf(d) {
+          var w = (d - 1) % PER_WEEK,
+            t = addDays(firstDay(), 7 * Math.floor((d - 1) / PER_WEEK));
+          while (w > 0) {
+            t = addDays(t, 1);
+            if (!isOff(t)) w--;
+          }
+          return t;
+        }
+        function fmt(dt) {
+          return dt.toLocaleDateString(undefined, {
+            weekday: "short",
+            day: "numeric",
+            month: "short",
+          });
+        }
+        /* Plan day for today. Below 1 means the plan has not started (1 - n calendar days to go). On a weekend this is the next working day. */
+        function todayNum() {
+          var t0 = today(),
+            f = firstDay();
+          if (t0 < f) return 1 - Math.round((f - t0) / 86400000);
+          var weeks = Math.floor(Math.round((t0 - f) / 86400000) / 7),
+            n = PER_WEEK * weeks;
+          for (var t = addDays(f, 7 * weeks); t <= t0; t = addDays(t, 1))
+            if (!isOff(t)) n++;
+          return isOff(t0) ? n + 1 : n;
+        }
+        function stored(d) {
+          return state.done[d] || 0;
+        }
+        function complete(d) {
+          return (stored(d) & mask(d)) === mask(d);
+        }
+
+        /* ---------- render ---------- */
+        function esc(s) {
+          return String(s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+        var GATE = {
+          E: ["D", "D-rank"],
+          M: ["B", "B-rank"],
+          H: ["S", "S-rank"],
+        };
+
+        /* Hunter rank climbs every 18 cleared days: E, D, C, B, A, then S on the last day. */
+        function rank(days) {
+          return "EDCBAS".charAt(Math.min(5, Math.floor(days / 18)));
+        }
+        function daysCleared() {
+          var n = 0;
+          for (var d = 1; d <= DAYS; d++) if (complete(d)) n++;
+          return n;
+        }
+        function toast(msg) {
+          var old = document.querySelector(".toast");
+          if (old) old.remove();
+          var t = document.createElement("div");
+          t.className = "toast";
+          t.setAttribute("role", "status");
+          t.textContent = msg;
+          document.body.appendChild(t);
+          setTimeout(function () {
+            t.remove();
+          }, 2800);
+        }
+
+        function dayCard(d, tn) {
+          var v = stored(d),
+            isDsa = dsaIndex(d) >= 0,
+            done = complete(d);
+          var cls =
+            "day sys" + (d === tn ? " today" : "") + (done ? " complete" : "");
+          var h =
+            '<article class="' +
+            cls +
+            '" data-d="' +
+            d +
+            '"><div class="dhead"><div><span class="kick">Daily quest</span><h3>Day ' +
+            d +
+            '</h3><div class="dt">' +
+            esc(fmt(dateOf(d))) +
+            '</div></div><div class="pills">';
+          if (isDsa) h += '<span class="pill dsa">Dungeon</span>';
+          if (d === tn)
+            h +=
+              '<span class="pill now">' +
+              (isOffToday() ? "Next quest" : "Active") +
+              "</span>";
+          if (done) h += '<span class="pill ok">Cleared</span>';
+          h += "</div></div>";
+          h += task(
+            d,
+            "office",
+            v,
+            "Main quest · Focus training",
+            "90 minutes of office work, AI sealed",
+            false,
+          );
+          h += task(
+            d,
+            "sd",
+            v,
+            "Skill · System design · " + phase(SD_PH, d),
+            SD[d - 1],
+            false,
+          );
+          h += task(
+            d,
+            "ai",
+            v,
+            "Skill · AI · " + phase(AI_PH, d),
+            AI[d - 1],
+            false,
+          );
+          if (isDsa) {
+            var pr = DSA[dsaIndex(d)],
+              t = '<span class="probs">';
+            for (var i = 0; i < pr.length; i++) {
+              var url =
+                "https://leetcode.com/problemset/?search=" +
+                encodeURIComponent(pr[i][0]);
+              t +=
+                '<span class="tx"><a href="' +
+                url +
+                '" target="_blank" rel="noopener">' +
+                esc(pr[i][0]) +
+                '</a><span class="diff r-' +
+                GATE[pr[i][1]][0] +
+                '">' +
+                GATE[pr[i][1]][1] +
+                "</span></span>";
+            }
+            t += "</span>";
+            h += task(d, "dsa", v, "Dungeon · Clear 2 gates", t, true);
+          }
+          return h + "</article>";
+        }
+        function task(d, key, v, label, text, raw) {
+          var id = "t" + d + key,
+            on = v & BIT[key] ? " checked" : "";
+          return (
+            '<label class="task' +
+            (key === "dsa" ? " dsa" : "") +
+            '" for="' +
+            id +
+            '"><input type="checkbox" id="' +
+            id +
+            '" data-d="' +
+            d +
+            '" data-k="' +
+            key +
+            '"' +
+            on +
+            '><div><span class="lab">' +
+            esc(label) +
+            "</span>" +
+            (raw ? text : '<span class="tx">' + esc(text) + "</span>") +
+            "</div></label>"
+          );
+        }
+
+        function weekDays(w) {
+          var a = [];
+          for (
+            var d = (w - 1) * PER_WEEK + 1;
+            d <= Math.min(w * PER_WEEK, DAYS);
+            d++
+          )
+            a.push(d);
+          return a;
+        }
+        function weekFull(w) {
+          return weekDays(w).every(complete);
+        }
+
+        function renderTabs() {
+          var tn = todayNum(),
+            tabs = "";
+          for (var w = 1; w <= WEEKS; w++) {
+            var ds = weekDays(w),
+              n = 0;
+            ds.forEach(function (d) {
+              if (complete(d)) n++;
+            });
+            var cur = tn >= ds[0] && tn <= ds[ds.length - 1];
+            tabs +=
+              '<button type="button" role="tab" class="tab' +
+              (n === ds.length ? " full" : "") +
+              '" data-w="' +
+              w +
+              '" aria-selected="' +
+              (w === selWeek) +
+              '">Week ' +
+              w +
+              "<small>" +
+              n +
+              "/" +
+              ds.length +
+              (cur ? " · now" : "") +
+              "</small></button>";
+          }
+          document.getElementById("tabs").innerHTML = tabs;
+        }
+        function renderDays() {
+          var tn = todayNum(),
+            ds = weekDays(selWeek),
+            h = "";
+          ds.forEach(function (d) {
+            h += dayCard(d, tn);
+          });
+          document.getElementById("days").innerHTML = h;
+          document.getElementById("wkTitle").textContent =
+            "Week " +
+            selWeek +
+            " · Days " +
+            ds[0] +
+            " to " +
+            ds[ds.length - 1] +
+            " · " +
+            fmt(dateOf(ds[0])) +
+            " to " +
+            fmt(dateOf(ds[ds.length - 1]));
+          document.getElementById("wkPhase").textContent =
+            "System design: " +
+            phase(SD_PH, ds[0]) +
+            "   |   AI: " +
+            phase(AI_PH, ds[0]);
+        }
+        function renderStats() {
+          var days = 0,
+            tasks = 0,
+            streak = 0,
+            tn = todayNum();
+          for (var d = 1; d <= DAYS; d++) {
+            if (complete(d)) days++;
+            tasks += bits(stored(d) & mask(d));
+          }
+          var last = Math.min(tn, DAYS);
+          if (last >= 1 && !complete(last)) last--;
+          if (last > DAYS) last = DAYS;
+          for (var e = last; e >= 1 && complete(e); e--) streak++;
+          var pct = Math.round((tasks / TOTAL_TASKS) * 100);
+          document.getElementById("sLevel").innerHTML =
+            "Lv. " + days + "<small> / " + DAYS + "</small>";
+          document.getElementById("sRank").innerHTML =
+            rank(days) + "<small>-rank</small>";
+          document.getElementById("sStreak").innerHTML =
+            streak + "<small> day" + (streak === 1 ? "" : "s") + "</small>";
+          document.getElementById("sTasks").innerHTML =
+            tasks + "<small> / " + TOTAL_TASKS + "</small>";
+          document.getElementById("sToday").textContent =
+            tn < 1
+              ? "Starts in " + (1 - tn) + "d"
+              : tn > DAYS
+                ? "Finished"
+                : isOffToday()
+                  ? "Rest day"
+                  : "Day " + tn;
+          document.getElementById("barFill").style.width = pct + "%";
+          document.getElementById("barPct").textContent = pct + "%";
+          document.getElementById("bar").setAttribute("aria-valuenow", pct);
+        }
+        function render() {
+          document.getElementById("start").value = state.start;
+          renderStats();
+          renderTabs();
+          renderDays();
+          setStatus();
+        }
+        function defaultWeek() {
+          var tn = todayNum();
+          if (tn < 1) return 1;
+          if (tn > DAYS) return WEEKS;
+          return Math.ceil(tn / PER_WEEK);
+        }
+
+        /* ---------- events ---------- */
+        document
+          .getElementById("days")
+          .addEventListener("change", function (ev) {
+            var el = ev.target;
+            if (!el || el.type !== "checkbox") return;
+            var d = +el.dataset.d,
+              b = BIT[el.dataset.k],
+              v = stored(d),
+              before = daysCleared();
+            v = el.checked ? v | b : v & ~b;
+            if (v) state.done[d] = v;
+            else delete state.done[d];
+            scheduleSave();
+            var card = el.closest(".day"),
+              tn = todayNum();
+            card.outerHTML = dayCard(d, tn);
+            var again = document.getElementById("t" + d + el.dataset.k);
+            if (again) again.focus();
+            renderStats();
+            renderTabs();
+            var after = daysCleared();
+            if (after > before)
+              toast(
+                rank(after) !== rank(before)
+                  ? "[System] Rank up · " + rank(after) + "-rank hunter"
+                  : "[System] Daily quest cleared · Lv. " + after,
+              );
+          });
+        document
+          .getElementById("tabs")
+          .addEventListener("click", function (ev) {
+            var b = ev.target.closest(".tab");
+            if (!b) return;
+            selWeek = +b.dataset.w;
+            try {
+              localStorage.setItem("routine90week", selWeek);
+            } catch (e) {}
+            renderTabs();
+            renderDays();
+          });
+        document
+          .getElementById("goToday")
+          .addEventListener("click", function () {
+            selWeek = defaultWeek();
+            renderTabs();
+            renderDays();
+          });
+        document
+          .getElementById("start")
+          .addEventListener("change", function (ev) {
+            if (!validDate(ev.target.value)) {
+              ev.target.value = state.start;
+              return;
+            }
+            state.start = ev.target.value;
+            scheduleSave();
+            selWeek = defaultWeek();
+            render();
+          });
+
+        /* ---------- boot ---------- */
+        loadLocal();
+        if (!selWeek || selWeek < 1 || selWeek > WEEKS) selWeek = defaultWeek();
+        savedRev = rev;
+        render();
+
+        (async function initCloud() {
+          try {
+            var c = window.claude;
+            if (!c || !c.use) return;
+            var res = await Promise.all([c.use("db"), c.use("user")]);
+            var db = res[0],
+              user = res[1];
+            if (!db || !user) return;
+            var id = await user.id();
+            if (!id) return;
+            dbDoc = db.collection("data/users/" + id).doc("tracker");
+            dbDoc.onSnapshot(
+              function (snap) {
+                if (
+                  saving ||
+                  savedRev !== rev ||
+                  snap.metadata.hasPendingWrites
+                )
+                  return;
+                if (snap.exists) {
+                  mode = "cloud";
+                  var s = normalize(snap.data());
+                  if (migrateStart(s, "cloud")) {
+                    state = s;
+                    render();
+                    scheduleSave();
+                    return;
+                  }
+                  if (JSON.stringify(s) !== JSON.stringify(state)) {
+                    state = s;
+                    saveLocal();
+                    render();
+                  } else setStatus();
+                } else if (!snap.metadata.fromCache) {
+                  mode = "cloud";
+                  if (hasProgress(state) || state.start !== DEFAULT_START)
+                    scheduleSave();
+                  else setStatus();
+                }
+              },
+              function () {
+                mode = "local";
+                setStatus();
+              },
+            );
+          } catch (e) {
+            mode = "local";
+            setStatus();
+          }
+        })();
+      })();
+    </script>
+  </body>
+</html>

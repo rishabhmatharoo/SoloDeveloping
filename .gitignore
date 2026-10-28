@@ -1,0 +1,5 @@
+extension.pem
+*.pem
+extension.crx
+*.crx
+.DS_Store

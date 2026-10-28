@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daily Quest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="popup">
+  <header class="phead sys">
+    <div class="kicker">[ System ] Daily quest</div>
+    <div class="row">
+      <h1 id="pTitle">Today</h1>
+      <span class="sub" id="pSub"></span>
+    </div>
+    <div class="mini"><span>Lv. <b id="pLevel">0</b></span><span>Rank <b id="pRank">E</b></span><span>Streak <b id="pStreak">0</b></span><span>EXP <b id="pTasks">0</b></span></div>
+    <div class="barrow"><div class="bar" role="progressbar" aria-label="EXP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><i id="barFill"></i></div><span id="barPct">0%</span></div>
+  </header>
+  <div id="note" class="note" hidden></div>
+  <div id="card"></div>
+  <div class="warn">Uncleared weekday quests reset your streak</div>
+  <div class="actions">
+    <button class="btn primary" id="openFull" type="button">Open status window</button>
+  </div>
+<script src="data.js"></script>
+<script src="ui.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>
